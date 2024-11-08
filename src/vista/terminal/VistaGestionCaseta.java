@@ -276,7 +276,7 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
                 Caseta caseta = new Caseta(arrendamiento, cantPlazas, empresa);
                 modelo.Caseta.guardarContadorId();
                 controladorVistaCaseta.agregarCaseta(caseta);
-                JOptionPane.showMessageDialog(null, "Se registró el Administrador con éxito");
+                JOptionPane.showMessageDialog(null, "Se registró la caseta con éxito");
                 vaciarCampos();
                 llenarTabla();
 

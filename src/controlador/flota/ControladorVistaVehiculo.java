@@ -67,6 +67,7 @@ public class ControladorVistaVehiculo {
         for (Caseta casetaAux : this.listaCasetas) {
             if (caseta.getEmpresa().getNit() == casetaAux.getEmpresa().getNit()) {
                 casetaAux.getEmpresa().getVehiculos().add(vehiculo);
+                caseta.getEmpresa().getVehiculos().add(vehiculo);
                 this.serializadora.escribirArrayListCasetas(this.listaCasetas);
             }
         }
