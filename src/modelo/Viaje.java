@@ -1,11 +1,13 @@
 package modelo;
 
-import java.io.Serializable;
+
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Viaje implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int contadorId = 1;
     private int idViaje;
     private String origen;
@@ -35,6 +37,8 @@ public class Viaje implements Serializable {
         this.fechaCreacion = fechaCreacion;
         this.vehiculo = vehiculo;
         this.valor = valor;
+        this.tiquetes = new ArrayList<>();
+        this.reservas = new ArrayList<>();
     }
 
     public int getIdViaje() {
@@ -131,5 +135,20 @@ public class Viaje implements Serializable {
 
     public void setReservas(ArrayList<Reserva> reservas) {
         this.reservas = reservas;
+    }
+    public static void guardarContadorId() {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream("contadorIdViaje.dat"))) {
+            out.writeInt(contadorId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void cargarContadorId() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream("contadorIdViaje.dat"))) {
+            contadorId = in.readInt();
+        } catch (IOException e) {
+            contadorId = 1; 
+        }
     }
 }

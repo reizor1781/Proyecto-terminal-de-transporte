@@ -14,6 +14,10 @@ public class main {
         ArrayList<Caseta> listaCaseta = serializadora.leerArrayListCasetas();
         serializadora.escribirArrayListPersonas(listaPersonas);
         for (Persona persona : listaPersonas) {
+            if(persona instanceof Cliente){
+                Cliente cliente = (Cliente) persona;
+                System.out.println(cliente.getPuntos());
+            }
             System.out.println(persona.getNombre());
             if (persona == null) {
                 System.out.println("Papito no guarda");
@@ -38,11 +42,13 @@ public class main {
                     System.out.println("Papito no guarda");
                 }
                 if (viaje != null) {
-                    System.out.println("Si guarda en teoria " + viaje.getDestino() + " " + viaje.getDestino());
+                    System.out.println("Si guarda en teoria " + viaje.getDestino() + " " + viaje.getIdViaje());
                 }
             }
         }
         AdminTerminal admin = new AdminTerminal(123, "Carlos", 'M', "3135003380", LocalDate.of(2005, 8, 27), "123", "Armenia", "Union libre");
         listaPersonas.add(admin);
+        Viaje viaje = new Viaje(null,null,null,null,null,null,null,null,0);
+        System.out.println(viaje.getTiquetes().size());
     }
 }

@@ -28,6 +28,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         this.controladorI = new ControladorVistaIniciarSesion();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -59,6 +60,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         jLabel1.setText("Cedula");
 
         txtCedula.setBackground(new java.awt.Color(204, 204, 204));
+        txtCedula.setForeground(new java.awt.Color(0, 0, 0));
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
@@ -69,6 +71,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         jLabel2.setText("Contraseña");
 
         txtContraseña.setBackground(new java.awt.Color(204, 204, 204));
+        txtContraseña.setForeground(new java.awt.Color(0, 0, 0));
 
         btnIniciarSesion.setBackground(new java.awt.Color(204, 153, 255));
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));

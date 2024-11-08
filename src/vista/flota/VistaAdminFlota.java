@@ -75,51 +75,75 @@ public class VistaAdminFlota extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 153, 204)));
         content.setPreferredSize(new java.awt.Dimension(885, 671));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
+
         labelBienvenido.setFont(new java.awt.Font("Gill Sans Ultra Bold", 0, 48)); // NOI18N
+        labelBienvenido.setForeground(new java.awt.Color(0, 0, 0));
         labelBienvenido.setText("BIENVENIDO");
 
         adminFlotaName.setFont(new java.awt.Font("DejaVu Serif", 1, 18)); // NOI18N
+        adminFlotaName.setForeground(new java.awt.Color(0, 0, 0));
         adminFlotaName.setText("adminFlotaNombre");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("🌟 Panel de gestión de la Flota 🌟");
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cada acción que realices aquí fortalece el funcionamiento eficiente y ordenado de la flota. Utiliza el");
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("menú superior para gestionar los recursos disponibles:");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Vehículos:");
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Mantén actualizada la flota de vehículos. Registra nuevos vehículos, actualiza detalles importantes y");
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("asegura que todos los recursos estén en óptimas condiciones para los viajes.");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Viajes:");
 
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Gestiona los viajes con precisión. Programa salidas, consulta detalles, ajusta horarios y asigna");
 
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("vehiculos para mantener el servicio en marcha y bien organizado.");
 
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("✨ Cada gestión que realices acerca a la flota a un nivel de servicio más seguro y confiable.");
 
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("¡Gracias por tu compromiso y dedicación! ✨");
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Tiquetes");
 
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("experiencia fluida para cada pasajero que confía en el servicio.");
 
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Supervisa y controla la emisión de tiquetes. Registra ventas, verifica disponibilidad y asegura una");
 
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Devoluciones:");
 
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("trato justo y ágil en cualquier devolución.");
 
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Administra las devoluciones de manera efectiva. Revisa casos, procesa solicitudes y garantiza un");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -200,12 +224,14 @@ public class VistaAdminFlota extends javax.swing.JFrame {
                 .addComponent(jLabel22)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addGap(11, 11, 11))
         );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
@@ -221,7 +247,7 @@ public class VistaAdminFlota extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(206, 206, 206)
@@ -248,7 +274,7 @@ public class VistaAdminFlota extends javax.swing.JFrame {
             .addGroup(contentLayout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,7 +382,7 @@ public class VistaAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_menuGestionVehiculosActionPerformed
 
     private void menuGestionTiquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionTiquetesActionPerformed
-        VistaGestionVehiculo vt = new VistaGestionVehiculo(this.caseta);
+        VistaGestionTiquete vt = new VistaGestionTiquete(this.caseta);
         vt.setSize(885, 671);
         vt.setLocation(0,0);
         

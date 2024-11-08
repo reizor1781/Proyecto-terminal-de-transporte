@@ -69,26 +69,35 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(885, 671));
 
+        bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 153, 204)));
         bg.setPreferredSize(new java.awt.Dimension(885, 671));
 
-        Vehiclo.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehiculo"));
+        Vehiclo.setBackground(new java.awt.Color(255, 255, 255));
+        Vehiclo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Vehiculo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
+        txtPlaca.setBackground(new java.awt.Color(204, 204, 204));
         txtPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPlacaActionPerformed(evt);
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Placa de vehiculo:");
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cantidad de puestos:");
 
+        txtCantPuestos.setBackground(new java.awt.Color(204, 204, 204));
         txtCantPuestos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantPuestosActionPerformed(evt);
             }
         });
 
+        btnGuardar.setBackground(new java.awt.Color(0, 153, 204));
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,26 +105,32 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Marca:");
 
+        txtMarca.setBackground(new java.awt.Color(204, 204, 204));
         txtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMarcaActionPerformed(evt);
             }
         });
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Modelo:");
 
+        txtModelo.setBackground(new java.awt.Color(204, 204, 204));
         txtModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtModeloActionPerformed(evt);
             }
         });
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Estado:");
 
         boxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Operativo", "Mantenimiento" }));
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Vencimiento del Soat:");
 
         cbAñoS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2023", "2024", "2025", "2026", "2028", "2029", "2030" }));
@@ -140,6 +155,7 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
             }
         });
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Vencimiento de Tecnomecanica:");
 
         cbAñoT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2023", "2024", "2025", "2026", "2028", "2029", "2030" }));
@@ -213,7 +229,7 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
                                 .addComponent(cbMesT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbDiaT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(98, 159, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         VehicloLayout.setVerticalGroup(
             VehicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +265,8 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
 
-        vehiculos.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehiculos"));
+        vehiculos.setBackground(new java.awt.Color(255, 255, 255));
+        vehiculos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Vehiculos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         tblVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -264,8 +281,11 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblVehiculos);
 
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Para editar a un vehiculo seleccionelo de la tabla");
 
+        jButton4.setBackground(new java.awt.Color(0, 153, 204));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Editar");
 
         javax.swing.GroupLayout vehiculosLayout = new javax.swing.GroupLayout(vehiculos);
@@ -301,11 +321,11 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(vehiculos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Vehiclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addComponent(Vehiclo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,7 +333,7 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
                 .addComponent(Vehiclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

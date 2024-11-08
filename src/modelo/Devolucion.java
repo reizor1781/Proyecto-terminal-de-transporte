@@ -1,9 +1,11 @@
 package modelo;
 
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDateTime;
 
 public class Devolucion implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private static int contadorId = 1;
     private int idDevolucion;
     private Tiquete tiquete;
     private Cliente cliente;
@@ -12,8 +14,8 @@ public class Devolucion implements Serializable {
     private int cantidad;
     public Devolucion() {
     }
-    public Devolucion(int idDevolucion, Tiquete tiquete, Cliente cliente, LocalDateTime fechaCreacion, String pago, int cantidad) {
-        this.idDevolucion = idDevolucion;
+    public Devolucion(Tiquete tiquete, Cliente cliente, LocalDateTime fechaCreacion, String pago, int cantidad) {
+        this.idDevolucion = contadorId++;
         this.tiquete = tiquete;
         this.cliente = cliente;
         this.fechaCreacion = fechaCreacion;
@@ -67,5 +69,20 @@ public class Devolucion implements Serializable {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+    public static void guardarContadorId() {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream("contadorIdDevolucion.dat"))) {
+            out.writeInt(contadorId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void cargarContadorId() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream("contadorIdDevolucion.dat"))) {
+            contadorId = in.readInt();
+        } catch (IOException e) {
+            contadorId = 1; 
+        }
     }
 }

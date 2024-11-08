@@ -32,6 +32,7 @@ public class Serializadora {
             FileOutputStream archivo = new FileOutputStream("casetas.dat");
             ObjectOutputStream escritor = new ObjectOutputStream(archivo);
             escritor.writeObject(lista);
+            escritor.close();
         }  catch(IOException ex){
             ex.printStackTrace();
         }

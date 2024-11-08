@@ -1,9 +1,11 @@
 package modelo;
 
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDate;
 
 public class Reserva implements Serializable{
+    private static final long serialVersionUID = 1L;
+    private static int contadorId = 1;
     private int idReserva;
     private LocalDate fechaDeCompra;
     private Cliente cliente;
@@ -16,8 +18,8 @@ public class Reserva implements Serializable{
 
     }
 
-    public Reserva(int idReserva, LocalDate fechaDeCompra, Cliente cliente, Viaje viaje, int puestos, String estado) {
-        this.idReserva = idReserva;
+    public Reserva(LocalDate fechaDeCompra, Cliente cliente, Viaje viaje, int puestos, String estado) {
+        this.idReserva = contadorId++;
         this.fechaDeCompra = fechaDeCompra;
         this.cliente = cliente;
         this.viaje = viaje;
@@ -66,5 +68,20 @@ public class Reserva implements Serializable{
     }
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    public static void guardarContadorId() {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream("contadorIdReserva.dat"))) {
+            out.writeInt(contadorId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void cargarContadorId() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream("contadorIdReserva.dat"))) {
+            contadorId = in.readInt();
+        } catch (IOException e) {
+            contadorId = 1; 
+        }
     }
 }

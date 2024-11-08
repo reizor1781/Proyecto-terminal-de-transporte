@@ -112,6 +112,7 @@ public class ControladorVistaViaje {
         for (Caseta casetaAux : this.listaCasetas) {
             if (caseta.getEmpresa().getNit() == casetaAux.getEmpresa().getNit()) {
                 casetaAux.getEmpresa().getViajes().add(viaje);
+                caseta.getEmpresa().getViajes().add(viaje);
                 this.serializadora.escribirArrayListCasetas(this.listaCasetas);
             }
         }

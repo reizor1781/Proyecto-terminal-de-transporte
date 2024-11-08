@@ -60,24 +60,40 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(885, 671));
 
+        bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 153, 204)));
         bg.setPreferredSize(new java.awt.Dimension(885, 671));
 
-        Caseta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Caseta"));
+        Caseta.setBackground(new java.awt.Color(255, 255, 255));
+        Caseta.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Caseta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Nombre de la Empresa");
 
+        txtNombre.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("NIT");
 
+        txtNit.setBackground(new java.awt.Color(204, 204, 204));
         txtNit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNitActionPerformed(evt);
             }
         });
 
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Valor Canon de Arrendamiento");
 
+        txtValorArrendamiento.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Cantidad de Plazas de Estacionamiento");
 
+        txtCantidadPlazas.setBackground(new java.awt.Color(204, 204, 204));
+
+        btnGuardar.setBackground(new java.awt.Color(204, 153, 255));
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,8 +101,10 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
             }
         });
 
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Administrador de flota que la manejara (cedula)");
 
+        txtCedulaAdmin.setBackground(new java.awt.Color(204, 204, 204));
         txtCedulaAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaAdminActionPerformed(evt);
@@ -146,12 +164,13 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
                 .addGroup(CasetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(txtCedulaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Casetas"));
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Casetas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         tblCasetas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,8 +185,11 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(tblCasetas);
 
+        jButton6.setBackground(new java.awt.Color(0, 153, 204));
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Editar");
 
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Para editar la empresa de selecciona la empresa de la tabla");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -177,7 +199,7 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,7 +210,7 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
@@ -206,7 +228,7 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(bgLayout.createSequentialGroup()
                         .addComponent(Caseta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 389, Short.MAX_VALUE)))
+                        .addGap(0, 376, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         bgLayout.setVerticalGroup(
@@ -250,12 +272,14 @@ public class VistaGestionCaseta extends javax.swing.JPanel {
                 int cantPlazas = Integer.parseInt(txtCantidadPlazas.getText());
                 AdminFlota adminFlota = controladorVistaCaseta.buscarAdminflotaRegistrado(Integer.parseInt(txtCedulaAdmin.getText()));
                 Empresa empresa = new Empresa(adminFlota, nit, nombre);
+                modelo.Caseta.cargarContadorId();
                 Caseta caseta = new Caseta(arrendamiento, cantPlazas, empresa);
+                modelo.Caseta.guardarContadorId();
                 controladorVistaCaseta.agregarCaseta(caseta);
                 JOptionPane.showMessageDialog(null, "Se registró el Administrador con éxito");
                 vaciarCampos();
                 llenarTabla();
-                return;
+
 
             } catch (EmpresaRepetidaException | AdministradorYaRegistradoException | UsuarioNoEncontradoONoRegistradoException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());

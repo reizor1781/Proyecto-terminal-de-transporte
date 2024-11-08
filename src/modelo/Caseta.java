@@ -1,8 +1,10 @@
 package modelo;
 
-import java.io.Serializable;
+import java.io.*;
+
 
 public class Caseta implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int contadorId = 1;
     private int idCaseta;
     private int canonArrendamiento;
@@ -48,4 +50,23 @@ public class Caseta implements Serializable {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
+    public static void guardarContadorId() {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream("contadorIdCaseta.dat"))) {
+            out.writeInt(contadorId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void cargarContadorId() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream("contadorIdCaseta.dat"))) {
+            contadorId = in.readInt();
+        } catch (IOException e) {
+            contadorId = 1; 
+        }
+    }
+
+
+
+   
 }

@@ -20,14 +20,16 @@ import modelo.*;
  * @author DARIO LOPEZ
  */
 public class VistaGestionViajes extends javax.swing.JPanel {
+
     private Caseta caseta;
     private ControladorVistaViaje controlador;
+
     /**
      * Creates new form VistaViajes
      */
     public VistaGestionViajes(Caseta caseta) {
         initComponents();
-        this.caseta = caseta; 
+        this.caseta = caseta;
         controlador = new ControladorVistaViaje();
         fechaLocal.setText(String.valueOf(LocalDate.now()));
         llenarTabla();
@@ -354,7 +356,7 @@ public class VistaGestionViajes extends javax.swing.JPanel {
             ViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViajesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(ViajesLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
@@ -370,7 +372,8 @@ public class VistaGestionViajes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(btnEditar)))
+                    .addComponent(btnEditar))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
@@ -378,10 +381,12 @@ public class VistaGestionViajes extends javax.swing.JPanel {
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Viajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Viajes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,7 +395,7 @@ public class VistaGestionViajes extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Viajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95))
+                .addGap(71, 71, 71))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -399,15 +404,15 @@ public class VistaGestionViajes extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -454,16 +459,18 @@ public class VistaGestionViajes extends javax.swing.JPanel {
                 int minutosl = Integer.parseInt(boxMinutoL.getSelectedItem().toString());
                 LocalDate fechaS = LocalDate.of(añoS, mesS, diaS);
                 LocalDate fechaL = LocalDate.of(añoL, mesL, diaL);
-                LocalTime tiempoS = LocalTime.of(horaS,minutosS);
-                LocalTime tiempoL = LocalTime.of(horaL,minutosl);
-                Vehiculo vehiculo = controlador.buscarVehiculo(this.caseta,placa);
-                Viaje viaje = new Viaje(origen,destino,fechaS,tiempoS,fechaL,tiempoL,LocalDate.now(),vehiculo,valor);
+                LocalTime tiempoS = LocalTime.of(horaS, minutosS);
+                LocalTime tiempoL = LocalTime.of(horaL, minutosl);
+                Vehiculo vehiculo = controlador.buscarVehiculo(this.caseta, placa);
+                modelo.Viaje.cargarContadorId();
+                Viaje viaje = new Viaje(origen, destino, fechaS, tiempoS, fechaL, tiempoL, LocalDate.now(), vehiculo, valor);
+                modelo.Viaje.guardarContadorId();
                 controlador.guardarViajeEnLaEmpresa(this.caseta, viaje);
                 JOptionPane.showMessageDialog(null, "Se registró el viaje con éxito");
                 vaciarCampos();
                 llenarTabla();
 
-            } catch (EsteVehiculoNoEstaRegistradoEnLaEmpresa | NoDisponibleVehiculoException | VencidaElSoatException | VencidaLaTecnomecanicaException | FechaInvalidaLlegadaAntesDeSalidaException | FechaInvalidaAntesDeLaLocalException| HoraPasadaException |HoraInvalidaException ex) {
+            } catch (EsteVehiculoNoEstaRegistradoEnLaEmpresa | NoDisponibleVehiculoException | VencidaElSoatException | VencidaLaTecnomecanicaException | FechaInvalidaLlegadaAntesDeSalidaException | FechaInvalidaAntesDeLaLocalException | HoraPasadaException | HoraInvalidaException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados.");
@@ -475,22 +482,21 @@ public class VistaGestionViajes extends javax.swing.JPanel {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int filaSeleccionada = tblViajes.getSelectedRow();
-        try{
-          
-          if(filaSeleccionada == -1){
-              throw new NoSeleccionoNadaException();
-          }
-          int id = tblViajes.getValueAt(filaSeleccionada, 0);
-          Caseta caseta = controlador.buscarViajeTabla(this.caseta, )
-            
-          
-        }catch(NoSeleccionoNadaException ex){
+        try {
+            if (filaSeleccionada == -1) {
+                throw new NoSeleccionoNadaException();
+            }         
+            Object valor = tblViajes.getValueAt(filaSeleccionada, 0);
+            int id;
+            id = (Integer) valor;
+            Viaje viaje = controlador.buscarViajeTabla(this.caseta, id);
+            VistaViaje vistaViaje = new VistaViaje(viaje);
+            vistaViaje.setVisible(true);
+        } catch (NoSeleccionoNadaException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
-       
-        
-              // TODO add your handling code here:
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
     public void vaciarCampos() {
         txtPlaca.setText(null);
@@ -524,16 +530,17 @@ public class VistaGestionViajes extends javax.swing.JPanel {
                 || "Hora".equals(boxHoraL.getSelectedItem().toString())
                 || "Minuto".equals(boxMinutoL.getSelectedItem().toString())
                 || txtValor.getText().isEmpty();
-                     
+
     }
+
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel() {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return false;
             }
         };
-        model.setColumnIdentifiers(new Object[]{"idViaje", "Origen", "Destino","Placa del vehiculo", "Fecha de creacion", "Fecha de salida", "Hora de Salida", "Fecha de Llegada", "Hora de llegada", "Valor"});
-        ArrayList<Viaje> aux = controlador.getListaViajesDeLaCaseta(this.caseta);
+        model.setColumnIdentifiers(new Object[]{"idViaje", "Origen", "Destino", "Placa del vehiculo", "Fecha de creacion", "Fecha de salida", "Hora de Salida", "Fecha de Llegada", "Hora de llegada", "Valor"});
+        ArrayList<Viaje> aux = caseta.getEmpresa().getViajes();
         for (int i = 0; i < aux.size(); i++) {
             Viaje viaje = aux.get(i);
             model.addRow(new Object[]{

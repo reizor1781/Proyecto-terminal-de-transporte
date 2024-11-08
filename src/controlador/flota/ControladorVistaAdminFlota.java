@@ -118,7 +118,7 @@ public class ControladorVistaAdminFlota {
     public void generarTransferencia(Empresa empresa, Viaje viaje, Tiquete tiquete) throws NoPuntosException {
         int valorPuntos = tiquete.getCliente().getPuntos();
         if (valorPuntos >= 90) {
-            Transaccion transaccion = new Transaccion(0, tiquete, tiquete.getCliente(), LocalDateTime.now(), 90);
+            Transaccion transaccion = new Transaccion(tiquete, tiquete.getCliente(), LocalDateTime.now(), 90);
             tiquete.getCliente().setPuntos(valorPuntos - 90);
             viaje.getTiquetes().add(tiquete);
             tiquete.getCliente().getRedencionPuntos().add(transaccion);
@@ -130,7 +130,7 @@ public class ControladorVistaAdminFlota {
         String pago = tiquete.getMetodoPago();
         switch (pago){
             case "Puntos":
-                Devolucion devolucionPuntos = new Devolucion(0,tiquete,tiquete.getCliente(),LocalDateTime.now(),tiquete.getMetodoPago(),90);
+                Devolucion devolucionPuntos = new Devolucion(tiquete,tiquete.getCliente(),LocalDateTime.now(),tiquete.getMetodoPago(),90);
                 empresa.getDevoluciones().add(devolucionPuntos);
                 int puntos = tiquete.getCliente().getPuntos();
                 tiquete.getCliente().setPuntos(puntos - 90);
@@ -139,7 +139,7 @@ public class ControladorVistaAdminFlota {
                 this.serializadora.escribirArrayListPersonas(this.listaPersonas);
                 break;
             case "Dinero":
-                Devolucion devolucionDinero = new Devolucion(0,tiquete,tiquete.getCliente(),LocalDateTime.now(),tiquete.getMetodoPago(),tiquete.getViaje().getValor());
+                Devolucion devolucionDinero = new Devolucion(tiquete,tiquete.getCliente(),LocalDateTime.now(),tiquete.getMetodoPago(),tiquete.getViaje().getValor());
                 empresa.getDevoluciones().add(devolucionDinero);
                 int valor = desIncrementardorDePuntos(tiquete);
                 tiquete.getViaje().getTiquetes().remove(tiquete);
