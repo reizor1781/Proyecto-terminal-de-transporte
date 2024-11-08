@@ -319,10 +319,7 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
                 String pago = boxPago.getSelectedItem().toString();
                 Cliente cliente = controlador.buscarCliente(cedula);
                 Viaje viaje = viajeTabla();
-                modelo.Tiquete.cargarContadorId();
-                Tiquete tiquete = new Tiquete(LocalDate.now(),cliente,viaje,pago);
-                modelo.Tiquete.guardarContadorId();
-                controlador.generarTiquete(cantPuestos,this.caseta,viaje,tiquete);
+                controlador.generarTiquete(cantPuestos,this.caseta,viaje,cliente,pago);
                 JOptionPane.showMessageDialog(null, "Se vendio el tiquete con éxito");
                 vaciarCampos();
                 llenarTablaViajes();

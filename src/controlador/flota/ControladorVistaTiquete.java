@@ -21,7 +21,7 @@ public class ControladorVistaTiquete {
         this.listaPersonas = serializadora.leerArrayListPersonas();
     }
 
-    public void generarTiquete(int cant, Caseta caseta, Viaje viaje,Cliente cliente, Viaje viaje,String pago) throws NoPuntosException, NoExisteElViajeException, ElViajeYaNoEstaDisponibleException, NoAsientosException {
+    public void generarTiquete(int cant, Caseta caseta, Viaje viaje,Cliente cliente,String pago) throws NoPuntosException, NoExisteElViajeException, ElViajeYaNoEstaDisponibleException, NoAsientosException {
 
         if (viaje.getFechaSalida().isBefore(LocalDate.now())) {
             throw new ElViajeYaNoEstaDisponibleException();
