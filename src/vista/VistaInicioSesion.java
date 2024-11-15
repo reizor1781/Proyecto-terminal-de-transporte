@@ -10,6 +10,7 @@ import excepciones.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import vista.cliente.VistaCliente;
 import vista.flota.VistaAdminFlota;
 import vista.terminal.vistaAdminTerminal;
 
@@ -203,7 +204,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                         }
                     } else {
                         if (persona instanceof Cliente && persona != null) {
-                            VistaCliente vc = new VistaCliente();
+                            VistaCliente vc = new VistaCliente((Cliente)persona);
                             vc.setVisible(true);
                             this.dispose();
                         }

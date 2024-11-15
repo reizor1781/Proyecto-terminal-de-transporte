@@ -25,6 +25,7 @@ public class VistaGestionReserva extends javax.swing.JPanel {
         initComponents();
         this.cliente = cliente;
         this.controlador = new ControladorVistaGestionReserva();
+        llenarTablaViajes();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +47,7 @@ public class VistaGestionReserva extends javax.swing.JPanel {
         btnCerrarSesion = new javax.swing.JButton();
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
-        bg.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(0, 153, 204)));
+        bg.setPreferredSize(new java.awt.Dimension(766, 601));
 
         ViajeSinReserva.setBackground(new java.awt.Color(255, 255, 255));
         ViajeSinReserva.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Reserva", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -105,18 +106,16 @@ public class VistaGestionReserva extends javax.swing.JPanel {
                     .addGroup(ViajeSinReservaLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVenderTiqueteSinReserva)
-                            .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVenderTiqueteSinReserva))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViajeSinReservaLayout.createSequentialGroup()
-                        .addGap(239, 239, 239)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrarSesion)
-                        .addGap(18, 18, 18))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addComponent(btnCerrarSesion))
+                    .addComponent(jScrollPane1))
+                .addGap(18, 18, 18))
         );
         ViajeSinReservaLayout.setVerticalGroup(
             ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +137,7 @@ public class VistaGestionReserva extends javax.swing.JPanel {
                             .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVenderTiqueteSinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addGap(19, 19, 19))))
         );
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
@@ -147,14 +146,14 @@ public class VistaGestionReserva extends javax.swing.JPanel {
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(ViajeSinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ViajeSinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -163,14 +162,14 @@ public class VistaGestionReserva extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -191,16 +190,17 @@ public class VistaGestionReserva extends javax.swing.JPanel {
             try {
                 int cantPuestos = Integer.parseInt(txtCant.getText());
                 Viaje viaje = viajeTabla();
-                Reserva reserva = new Reserva();
+                modelo.Reserva.cargarContadorId();
+                Reserva reserva = new Reserva(this.cliente,viaje,cantPuestos,"activa");
                 JOptionPane.showMessageDialog(null, "Se vendio el tiquete con éxito");
+                controlador.guardarReserva(reserva);
                 vaciarCampos();
                 llenarTablaViajes();
-            
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados.");
-            } catch (NoSeleccionoNadaException ex) {
-                Logger.getLogger(VistaGestionReserva.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (ElViajeYaNoEstaDisponibleException |NoSeleccionoNadaException | NoAsientosException  ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            } 
         } else {
             JOptionPane.showMessageDialog(null, "Debe llenar los campos correspondientes");
         }

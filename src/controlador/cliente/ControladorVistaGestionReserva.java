@@ -31,7 +31,7 @@ public class ControladorVistaGestionReserva {
         listaPersonas = serializadora.leerArrayListPersonas();
     }
 
-    public void reservarReserva(Reserva reserva) throws ElViajeYaNoEstaDisponibleException, NoAsientosException {
+    public void guardarReserva(Reserva reserva) throws ElViajeYaNoEstaDisponibleException, NoAsientosException {
         if (reserva.getViaje().getFechaSalida().equals(LocalDate.now())) {
             if (reserva.getViaje().getHoraSalida().isBefore(LocalTime.now())) {
                 throw new ElViajeYaNoEstaDisponibleException();
@@ -46,6 +46,8 @@ public class ControladorVistaGestionReserva {
             throw new NoAsientosException();
         }
         reserva.getViaje().getReservas().add(reserva);
+        serializadora.escribirArrayListCasetas(listaCasetas);
+        modelo.Reserva.guardarContadorId();
     }
 
     public Viaje buscarViajeTabla(int id) {

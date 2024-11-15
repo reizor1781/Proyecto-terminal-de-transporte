@@ -18,9 +18,9 @@ public class Reserva implements Serializable{
 
     }
 
-    public Reserva(LocalDate fechaDeCompra, Cliente cliente, Viaje viaje, int puestos, String estado) {
+    public Reserva(Cliente cliente, Viaje viaje, int puestos, String estado) {
         this.idReserva = contadorId++;
-        this.fechaDeCompra = fechaDeCompra;
+        this.fechaDeCompra = LocalDate.now();
         this.cliente = cliente;
         this.viaje = viaje;
         this.puestos = puestos;
