@@ -126,36 +126,7 @@ public class ControladorVistaAdminFlota {
         }
         throw new NoPuntosException(valorPuntos, 90);
     }
-    public void generarDevolucion(Empresa empresa,Tiquete tiquete){
-        String pago = tiquete.getMetodoPago();
-        switch (pago){
-            case "Puntos":
-                Devolucion devolucionPuntos = new Devolucion(tiquete,tiquete.getCliente(),LocalDateTime.now(),tiquete.getMetodoPago(),90);
-                empresa.getDevoluciones().add(devolucionPuntos);
-                int puntos = tiquete.getCliente().getPuntos();
-                tiquete.getCliente().setPuntos(puntos - 90);
-                tiquete.getCliente().getDevoluciones().add(devolucionPuntos);
-                this.serializadora.escribirArrayListCasetas(this.listaCasetas);
-                this.serializadora.escribirArrayListPersonas(this.listaPersonas);
-                break;
-            case "Dinero":
-                Devolucion devolucionDinero = new Devolucion(tiquete,tiquete.getCliente(),LocalDateTime.now(),tiquete.getMetodoPago(),tiquete.getViaje().getValor());
-                empresa.getDevoluciones().add(devolucionDinero);
-                int valor = desIncrementardorDePuntos(tiquete);
-                tiquete.getViaje().getTiquetes().remove(tiquete);
-                tiquete.getCliente().getDevoluciones().add(devolucionDinero);
-                this.serializadora.escribirArrayListCasetas(this.listaCasetas);
-                this.serializadora.escribirArrayListPersonas(this.listaPersonas);
-                break;
-        }
-    }
-    public int desIncrementardorDePuntos(Tiquete tiquete) {
-        int valorViaje = tiquete.getViaje().getValor();
-        int puntosAcumulado = (valorViaje / 10000) * 3;
-        int valorPuntos = tiquete.getCliente().getPuntos();
-        tiquete.getCliente().setPuntos(valorPuntos - puntosAcumulado);
-        return puntosAcumulado;
-    }
+    
 
     public ArrayList<Caseta> getListaCasetas() {
         return listaCasetas;

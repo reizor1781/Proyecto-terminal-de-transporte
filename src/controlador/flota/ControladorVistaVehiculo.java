@@ -38,8 +38,11 @@ public class ControladorVistaVehiculo {
         return null;
     }
 
-    public void guardarVehiculoEnLaEmpresa(Caseta caseta, Vehiculo vehiculo) throws PlacaRepetidaException, VencidaLaTecnomecanicaException, VencidaElSoatException {
+    public void guardarVehiculoEnLaEmpresa(Caseta caseta, Vehiculo vehiculo) throws PlacaRepetidaException, VencidaLaTecnomecanicaException, VencidaElSoatException, LimiteCantidadPlazasException {
         Vehiculo aux = buscarVehiculoEnCadaEmpresa(vehiculo);
+        if(caseta.getCantidadPlazas()<caseta.getEmpresa().getVehiculos().size()+1){
+            throw new LimiteCantidadPlazasException();
+        }
         if (aux != null) {
             throw new PlacaRepetidaException();
         }

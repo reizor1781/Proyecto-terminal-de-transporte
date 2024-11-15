@@ -9,8 +9,10 @@ import excepciones.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import modelo.*;
+import vista.VistaInicioSesion;
 
 /**
  *
@@ -61,6 +63,7 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
         cbAñoT = new javax.swing.JComboBox<>();
         cbMesT = new javax.swing.JComboBox<>();
         cbDiaT = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         vehiculos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVehiculos = new javax.swing.JTable();
@@ -180,6 +183,15 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 204));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cerrar Sesion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout VehicloLayout = new javax.swing.GroupLayout(Vehiclo);
         Vehiclo.setLayout(VehicloLayout);
         VehicloLayout.setHorizontalGroup(
@@ -212,7 +224,9 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
                             .addGroup(VehicloLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(boxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(boxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))
                             .addGroup(VehicloLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -229,17 +243,22 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
                                 .addComponent(cbMesT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbDiaT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         VehicloLayout.setVerticalGroup(
             VehicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VehicloLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(VehicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(VehicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(VehicloLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(VehicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(VehicloLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(VehicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,10 +408,12 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
                 llenarTabla();
                 return;
 
-            } catch (PlacaRepetidaException | VencidaElSoatException | VencidaLaTecnomecanicaException ex) {
+            } catch (PlacaRepetidaException | VencidaElSoatException | VencidaLaTecnomecanicaException |LimiteCantidadPlazasException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados.");
+            }catch (java.time.DateTimeException eX) {
+                JOptionPane.showMessageDialog(null, "Error en la fehca que ingreso");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe llenar los campos correspondientes");
@@ -485,6 +506,13 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbDiaTActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        VistaInicioSesion vi = new VistaInicioSesion();
+        vi.setVisible(true);
+        SwingUtilities.getWindowAncestor(this).dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Vehiclo;
@@ -497,6 +525,7 @@ public class VistaGestionVehiculo extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbDiaT;
     private javax.swing.JComboBox<String> cbMesS;
     private javax.swing.JComboBox<String> cbMesT;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;

@@ -11,14 +11,19 @@ import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import vista.VistaInicioSesion;
+import vista.*;
 
 /**
  *
  * @author CARLOS
  */
 public class VistaGestionTiquete extends javax.swing.JPanel {
+
     private ControladorVistaTiquete controlador;
     private Caseta caseta;
+    private VistaAdminFlota vA;
     /**
      * Creates new form VistaGestionTiquete
      */
@@ -26,6 +31,8 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
         initComponents();
         controlador = new ControladorVistaTiquete();
         this.caseta = caseta;
+        
+        vA = new VistaAdminFlota(caseta, caseta.getEmpresa().getAdminFlota());
         llenarTablaViajes();
         llenarTablaTiquetes();
     }
@@ -57,6 +64,7 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblViajes = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTiquetes = new javax.swing.JTable();
@@ -67,6 +75,17 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setPreferredSize(new java.awt.Dimension(870, 660));
+
+        javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
+        bg.setLayout(bgLayout);
+        bgLayout.setHorizontalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 848, Short.MAX_VALUE)
+        );
+        bgLayout.setVerticalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Reservas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -175,6 +194,15 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Seleciona el viaje el cual va a vender los tiquetes:");
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 204));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cerrar Sesion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ViajeSinReservaLayout = new javax.swing.GroupLayout(ViajeSinReserva);
         ViajeSinReserva.setLayout(ViajeSinReservaLayout);
         ViajeSinReservaLayout.setHorizontalGroup(
@@ -182,13 +210,6 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
             .addGroup(ViajeSinReservaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ViajeSinReservaLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(ViajeSinReservaLayout.createSequentialGroup()
                         .addGroup(ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnVenderTiqueteSinReserva)
@@ -201,17 +222,31 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
                                     .addComponent(txtCant)
                                     .addComponent(boxPago, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(ViajeSinReservaLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18))))
         );
         ViajeSinReservaLayout.setVerticalGroup(
             ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViajeSinReservaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViajeSinReservaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ViajeSinReservaLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ViajeSinReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViajeSinReservaLayout.createSequentialGroup()
@@ -261,45 +296,32 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
-        bg.setLayout(bgLayout);
-        bgLayout.setHorizontalGroup(
-            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ViajeSinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ViajeSinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
-        bgLayout.setVerticalGroup(
-            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ViajeSinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(645, 645, 645))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -319,13 +341,13 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
                 String pago = boxPago.getSelectedItem().toString();
                 Cliente cliente = controlador.buscarCliente(cedula);
                 Viaje viaje = viajeTabla();
-                controlador.generarTiquete(cantPuestos,this.caseta,viaje,cliente,pago);
+                controlador.generarTiquete(cantPuestos, this.caseta, viaje, cliente, pago);
                 JOptionPane.showMessageDialog(null, "Se vendio el tiquete con éxito");
                 vaciarCampos();
                 llenarTablaViajes();
                 llenarTablaTiquetes();
 
-            } catch (NoSeleccionoNadaException | UsuarioNoEncontradoONoRegistradoException | NoPuntosException | NoExisteElViajeException | NoAsientosException | ElViajeYaNoEstaDisponibleException ex) {
+            } catch (NoSeleccionoNadaException | UsuarioNoEncontradoONoRegistradoException | NoPuntosException | NoExisteElViajeException | NoAsientosException | ElViajeYaNoEstaDisponibleException | NoSeVendioElTiqueteException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados.");
@@ -334,6 +356,13 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Debe llenar los campos correspondientes");
         }
     }//GEN-LAST:event_btnVenderTiqueteSinReservaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        VistaInicioSesion vi = new VistaInicioSesion();
+        vi.setVisible(true);
+        SwingUtilities.getWindowAncestor(this).dispose();
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void vaciarCampos() {
         txtCedula.setText(null);
         txtCant.setText(null);
@@ -358,44 +387,46 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
         for (int i = 0; i < aux.size(); i++) {
             Viaje viaje = aux.get(i);
             model.addRow(new Object[]{
-                    viaje.getIdViaje(),
-                    viaje.getOrigen(),
-                    viaje.getDestino(),
-                    viaje.getFechaSalida(),
-                    viaje.getFechallegada(),
-                    viaje.getValor()
+                viaje.getIdViaje(),
+                viaje.getOrigen(),
+                viaje.getDestino(),
+                viaje.getFechaSalida(),
+                viaje.getFechallegada(),
+                viaje.getValor()
             });
 
         }
         tblViajes.setModel(model);
     }
+
     private void llenarTablaTiquetes() {
         DefaultTableModel model = new DefaultTableModel() {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return false;
             }
         };
-        model.setColumnIdentifiers(new Object[]{"id", "fecha venta", "Metodo de pago","Cliente","Destino","Fecha Salida","Fecha llegada","Valor"});
+        model.setColumnIdentifiers(new Object[]{"id", "fecha venta", "Metodo de pago", "Cedula", "Nombre", "Destino", "Fecha Salida", "Fecha llegada", "Valor"});
         ArrayList<Viaje> aux = controlador.getListaViajesDeLaCaseta(this.caseta);
         for (int i = 0; i < aux.size(); i++) {
-            for (Tiquete tiquete : aux.get(i).getTiquetes()){
+            for (Tiquete tiquete : aux.get(i).getTiquetes()) {
                 Viaje viaje = aux.get(i);
                 model.addRow(new Object[]{
-                        tiquete.getIdTiquete(),
-                        tiquete.getFechaDeCreacion(),
-                        tiquete.getMetodoPago(),
-                        tiquete.getCliente(),
-                        viaje.getDestino(),
-                        viaje.getFechaSalida(),
-                        viaje.getFechallegada(),
-                        viaje.getValor()
+                    tiquete.getIdTiquete(),
+                    tiquete.getFechaDeCreacion(),
+                    tiquete.getMetodoPago(),
+                    tiquete.getCliente().getCedula(),
+                    tiquete.getCliente().getNombre(),
+                    viaje.getDestino(),
+                    viaje.getFechaSalida(),
+                    viaje.getFechallegada(),
+                    viaje.getValor()
                 });
             }
-
 
         }
         tblTiquetes.setModel(model);
     }
+
     public Viaje viajeTabla() throws NoSeleccionoNadaException {
         int filaSeleccionada = tblViajes.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -423,6 +454,7 @@ public class VistaGestionTiquete extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> boxPago;
     private javax.swing.JButton btnVenderTiqueteConReserva;
     private javax.swing.JButton btnVenderTiqueteSinReserva;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

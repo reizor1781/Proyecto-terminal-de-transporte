@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import excepciones.*;
 import modelo.*;
+import vista.VistaInicioSesion;
 
 /**
  *
@@ -49,7 +50,6 @@ public class VistaGestionViajes extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtPlaca = new javax.swing.JTextField();
-        txtOrigen = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtValor = new javax.swing.JTextField();
@@ -71,11 +71,13 @@ public class VistaGestionViajes extends javax.swing.JPanel {
         boxHoraL = new javax.swing.JComboBox<>();
         boxMinutoL = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
+        txtOrigen = new javax.swing.JLabel();
         Viajes = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblViajes = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(897, 700));
 
@@ -95,8 +97,6 @@ public class VistaGestionViajes extends javax.swing.JPanel {
         jLabel4.setText("Origen:");
 
         txtPlaca.setBackground(new java.awt.Color(204, 204, 204));
-
-        txtOrigen.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Valor:");
@@ -188,6 +188,10 @@ public class VistaGestionViajes extends javax.swing.JPanel {
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Fecha de llegada:");
 
+        txtOrigen.setBackground(new java.awt.Color(255, 255, 255));
+        txtOrigen.setForeground(new java.awt.Color(0, 0, 0));
+        txtOrigen.setText("Armenia");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -196,15 +200,15 @@ public class VistaGestionViajes extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDestino))
+                                .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtOrigen)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -261,9 +265,9 @@ public class VistaGestionViajes extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(fechaLocal))
+                    .addComponent(fechaLocal)
+                    .addComponent(txtOrigen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,30 +354,48 @@ public class VistaGestionViajes extends javax.swing.JPanel {
             }
         });
 
+        jButton14.setBackground(new java.awt.Color(0, 153, 204));
+        jButton14.setForeground(new java.awt.Color(255, 255, 255));
+        jButton14.setText("Cerrar Sesion");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ViajesLayout = new javax.swing.GroupLayout(Viajes);
         Viajes.setLayout(ViajesLayout);
         ViajesLayout.setHorizontalGroup(
             ViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViajesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
             .addGroup(ViajesLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(ViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViajesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(ViajesLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton14)))
+                .addContainerGap())
         );
         ViajesLayout.setVerticalGroup(
             ViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViajesLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(btnEditar))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGroup(ViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViajesLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(btnEditar))
+                        .addContainerGap(17, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ViajesLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton14)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
@@ -391,7 +413,7 @@ public class VistaGestionViajes extends javax.swing.JPanel {
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Viajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -474,10 +496,13 @@ public class VistaGestionViajes extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados.");
+            }catch (java.time.DateTimeException eX) {
+                JOptionPane.showMessageDialog(null, "Error en la fehca que ingreso");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe llenar los campos correspondientes");
         }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -498,6 +523,13 @@ public class VistaGestionViajes extends javax.swing.JPanel {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        VistaInicioSesion vi = new VistaInicioSesion();
+        vi.setVisible(true);
+        SwingUtilities.getWindowAncestor(this).dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
     public void vaciarCampos() {
         txtPlaca.setText(null);
         txtOrigen.setText(null);
@@ -577,6 +609,20 @@ public class VistaGestionViajes extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbMesL;
     private javax.swing.JComboBox<String> cbMesS;
     private javax.swing.JLabel fechaLocal;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -591,7 +637,7 @@ public class VistaGestionViajes extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblViajes;
     private javax.swing.JTextField txtDestino;
-    private javax.swing.JTextField txtOrigen;
+    private javax.swing.JLabel txtOrigen;
     private javax.swing.JTextField txtPlaca;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables

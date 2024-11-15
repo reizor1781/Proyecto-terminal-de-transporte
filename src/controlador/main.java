@@ -3,7 +3,6 @@ package controlador;
 import persistencia.*;
 import modelo.*;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 
 public class main {
@@ -12,6 +11,7 @@ public class main {
         Serializadora serializadora = new Serializadora();
         ArrayList<Persona> listaPersonas = serializadora.leerArrayListPersonas();
         ArrayList<Caseta> listaCaseta = serializadora.leerArrayListCasetas();
+        
         serializadora.escribirArrayListPersonas(listaPersonas);
         for (Persona persona : listaPersonas) {
             if(persona instanceof Cliente){

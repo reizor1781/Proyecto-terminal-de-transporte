@@ -320,6 +320,8 @@ public class VistaRegistroCliente extends javax.swing.JFrame {
             }
         } catch (ClienteRepetidoException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
+        }catch (java.time.DateTimeException eX) {
+            JOptionPane.showMessageDialog(null, "Error en la fehca que ingreso");
         }// TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarseActionPerformed
     public void vaciarCampos() {

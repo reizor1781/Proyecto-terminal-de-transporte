@@ -16,6 +16,7 @@ import modelo.*;
 public class VistaAdminFlota extends javax.swing.JFrame {
     private Caseta caseta;
     private AdminFlota adminFlota;
+   
     /**
      * Creates new form VistaAdminFlota
      */
@@ -272,9 +273,9 @@ public class VistaAdminFlota extends javax.swing.JFrame {
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(64, 64, 64)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,6 +334,11 @@ public class VistaAdminFlota extends javax.swing.JFrame {
 
         menuGestionDevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Devolucion.png"))); // NOI18N
         menuGestionDevoluciones.setText("Gestion");
+        menuGestionDevoluciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGestionDevolucionesActionPerformed(evt);
+            }
+        });
         devoluciones.add(menuGestionDevoluciones);
 
         jMenuBar1.add(devoluciones);
@@ -392,6 +398,17 @@ public class VistaAdminFlota extends javax.swing.JFrame {
         content.repaint();
         
     }//GEN-LAST:event_menuGestionTiquetesActionPerformed
+
+    private void menuGestionDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionDevolucionesActionPerformed
+        VistaGestionDevoluciones vt = new VistaGestionDevoluciones(this.caseta);
+        vt.setSize(885, 671);
+        vt.setLocation(0,0);
+        
+        content.removeAll();
+        content.add(vt, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();    // TODO add your handling code here:
+    }//GEN-LAST:event_menuGestionDevolucionesActionPerformed
 
     
 

@@ -10,7 +10,9 @@ import controlador.*;
 import excepciones.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import vista.VistaInicioSesion;
 
 /**
  *
@@ -79,6 +81,7 @@ public class VistaGestionAdministradorFlota extends javax.swing.JPanel {
         tblAdmins = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(885, 671));
 
@@ -439,15 +442,29 @@ public class VistaGestionAdministradorFlota extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 204));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cerrar Sesion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         bgLayout.setVerticalGroup(
@@ -455,7 +472,9 @@ public class VistaGestionAdministradorFlota extends javax.swing.JPanel {
             .addGroup(bgLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 47, Short.MAX_VALUE))
@@ -515,6 +534,8 @@ public class VistaGestionAdministradorFlota extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados.");
+            } catch (java.time.DateTimeException eX) {
+                JOptionPane.showMessageDialog(null, "Error en la fehca que ingreso");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe llenar los campos correspondientes");
@@ -615,6 +636,13 @@ public class VistaGestionAdministradorFlota extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        VistaInicioSesion vi = new VistaInicioSesion();
+        vi.setVisible(true);
+        SwingUtilities.getWindowAncestor(this).dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
@@ -624,6 +652,7 @@ public class VistaGestionAdministradorFlota extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbAño;
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbMes;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
