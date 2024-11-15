@@ -203,7 +203,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                         }
                     } else {
                         if (persona instanceof Cliente && persona != null) {
-                            PruebaVistaCliente vc = new PruebaVistaCliente();
+                            VistaCliente vc = new VistaCliente();
                             vc.setVisible(true);
                             this.dispose();
                         }

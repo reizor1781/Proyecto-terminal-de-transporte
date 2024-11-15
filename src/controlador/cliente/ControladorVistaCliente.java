@@ -1,4 +1,4 @@
-package controlador;
+package controlador.cliente;
 
 
 import java.time.LocalDate;
